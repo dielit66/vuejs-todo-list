@@ -20,13 +20,20 @@
             v-bind:placeholder="placeholderString"
             v-bind:value="inputValue"
             v-on:input="inputChangeHandler"
+            v-on:keypress.enter="addNewNote"
           />
         </div>
         <button class="btn" v-on:click="addNewNote">Добавить</button>
         <hr />
-        <ul class="list">
-          <li class="list-item" v-for="myNote in notes">{{myNote}}</li>
+        <ul class="list" v-if="notes.length != 0">
+          <li class="list-item" v-for="(myNote,index) in notes">
+            {{myNote}}
+            <button class="btn danger" v-on:click="deleteNote(index)">
+              Удалить
+            </button>
+          </li>
         </ul>
+        <div v-if="notes.length === 0 ">Заметок пока нет.</div>
       </div>
     </div>
     >

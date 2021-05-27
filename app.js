@@ -4,7 +4,7 @@ const App = {
       placeholderString: "Введите название заметки ",
       title: "Список заметок",
       inputValue: "",
-      notes: ["Заметка1"],
+      notes: [],
     };
   },
   methods: {
@@ -12,7 +12,12 @@ const App = {
       this.inputValue = event.target.value;
     },
     addNewNote() {
-      this.notes.push(this.inputValue);
+      if (this.inputValue !== "") {
+        this.notes.push(this.inputValue);
+      }
+    },
+    deleteNote(index) {
+      this.notes.splice(index, 1);
     },
   },
 };
